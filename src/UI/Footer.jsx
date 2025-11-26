@@ -8,12 +8,12 @@ import youtubeIcon from '../assets/social/youtube.jpg'
 
 const Footer = () => {
     const links = <>
-        <li><NavLink to=''>Services</NavLink></li>
-        <li><NavLink to=''>Coverage</NavLink></li>
-        <li><NavLink to=''>About Us</NavLink></li>
-        <li><NavLink to=''>Pricing</NavLink></li>
-        <li><NavLink to=''>Blog</NavLink></li>
-        <li><NavLink to=''>Contact</NavLink></li>
+        <li><NavLink to='/services'>Services</NavLink></li>
+        <li><NavLink to='/coverage'>Coverage</NavLink></li>
+        <li><NavLink to='/aboutUs'>About Us</NavLink></li>
+        <li><NavLink to='/pricing'>Pricing</NavLink></li>
+        <li><NavLink to='/blog'>Blog</NavLink></li>
+        <li><NavLink to='/contact'>Contact</NavLink></li>
     </>
 
     return (
