@@ -19,7 +19,7 @@ const Footer = () => {
     return (
         <footer className="footer footer-horizontal footer-center p-4 py-8 md:p-11 md:mb-10 mb-3 bg-black rounded-xl md:rounded-4xl">
             <aside className=''>
-                <Logo />
+                <Logo color='white' />
                 <p className='text-[1rem] mt-4 overflow-hidden  md:max-w-175 mx-5 text-white'>Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
             </aside>
 
