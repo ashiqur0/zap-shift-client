@@ -12,7 +12,7 @@ const HowItWorks = () => {
 
     return (
         <div className='my-20'>
-            <h1 className='text-secondary font-extrabold text-3xl mb-5'>How it Works</h1>
+            <h1 className='text-secondary font-extrabold text-2xl md:text-3xl mb-5'>How it Works</h1>
 
             <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                 {
