@@ -4,7 +4,7 @@ import ReviewCard from './ReviewCard';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 import customerTop from '../../../assets/customerTop.png'
 
 const Review = ({ reviewPromise }) => {
@@ -20,19 +20,25 @@ const Review = ({ reviewPromise }) => {
             </div>
 
             <Swiper
+                loop={true}
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}
                 slidesPerView={3}
                 coverflowEffect={{
-                    rotate: 50,
-                    stretch: 0,
+                    rotate: 30,
+                    stretch: '50%',
                     depth: 100,
                     modifier: 1,
+                    scale: 0.75,
                     slideShadows: true,
                 }}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                }}
                 pagination={true}
-                modules={[EffectCoverflow, Pagination]}
+                modules={[EffectCoverflow, Pagination, Autoplay]}
                 className="mySwiper"
             >
                 {
