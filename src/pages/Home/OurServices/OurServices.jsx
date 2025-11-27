@@ -18,7 +18,7 @@ const OurServices = () => {
 
             <div className='grid md:grid-cols-3 grid-cols-1 justify-between items-center gap-5'>
                 {
-                    data.map(d => <div key={d.id} className='bg-white p-5 h-70 rounded-xl text-secondary text-center flex flex-col items-center space-y-4 hover:bg-primary'>
+                    data.map(d => <div key={d.title} className='bg-white p-5 h-70 rounded-xl text-secondary text-center flex flex-col items-center space-y-4 hover:bg-primary'>
                         <img src={service} className='w-20 h-auto bg-gray-200 rounded-full p-3' />
                         <h3 className='text-xl font-bold'>{d.title}</h3>
                         <p className='text-[#606060]'>{d.description}</p>
