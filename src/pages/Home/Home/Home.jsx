@@ -8,6 +8,8 @@ import Aim from '../Aim/Aim';
 import Review from '../Review/Review';
 import FAQ from '../FAQ/FAQ';
 
+const reviewPromise = fetch('/reviews.json').then(res => res.json());
+
 const Home = () => {
     return (
         <div>
@@ -17,7 +19,7 @@ const Home = () => {
             <TrustedSalesTeam />
             <Features />
             <Aim />
-            <Review />
+            <Review reviewPromise={reviewPromise} />
             <FAQ />
         </div>
     );
