@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
+import arrowIcon from '../../../assets/arrow.jpg'
 
 const FAQ = () => {
 
     const [faqs, setFAQs] = useState([]);
+    const [seeMore, setSeeMore] = useState(false);
 
     useEffect(() => {
         fetch('/faq.json')
@@ -13,20 +15,23 @@ const FAQ = () => {
     }, [])
 
     const handleFAQ = (id) => {
+        const updated = faqs.map(faq =>
+            faq.id === id
+                ? { ...faq, open: !faq.open }
+                : { ...faq, open: false }
+        );
 
-        const openQuestions = faqs.map(faq => faq.id != id ? { open: false, question: faq.question, answer: faq.answer, id: faq.id } : { open: true, question: faq.question, answer: faq.answer, id: faq.id });
-
-        setFAQs(openQuestions);
-    }
+        setFAQs(updated);
+    };
 
     return (
         <div className='my-20 md:max-w-275 md:mx-auto mx-4'>
             <h1 className='md:text-3xl text-2xl font-extrabold text-secondary text-center'>Frequently Asked Question (FAQ)</h1>
             <p className='text-txt text-center max-w-200 mt-3 mx-auto'>Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce pain, and strengthen your body with ease!</p>
 
-            <div>
+            <div className='mt-5'>
                 {
-                    faqs.map(faq => (
+                    (seeMore ? faqs.slice(0, 5) : faqs).map(faq => (
                         <div key={faq.id}
                             onClick={() => {
                                 !faq.open && handleFAQ(faq.id);
@@ -46,6 +51,12 @@ const FAQ = () => {
                             </div>
                         </div>))
                 }
+            </div>
+
+            <div className='w-full flex justify-center mt-10'>
+                <button onClick={() => setSeeMore(!seeMore)}
+                    className='btn bg-primary text-[1rem] font-bold rounded-xl'>{seeMore ? "See Less FAQ's" : "See More FAQ's"}</button>
+                <img src={arrowIcon} className={`rounded-full w-10 ${seeMore ? "rotate-180" : 'rotate-0'}`} alt="" />
             </div>
         </div>
     );
