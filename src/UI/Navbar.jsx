@@ -4,12 +4,12 @@ import { NavLink } from 'react-router';
 
 const Navbar = () => {
     const links = <>
-        <li><NavLink to='/services'>Services</NavLink></li>
-        <li><NavLink to='/coverage'>Coverage</NavLink></li>
-        <li><NavLink to='/aboutUs'>About Us</NavLink></li>
-        <li><NavLink to='/pricing'>Pricing</NavLink></li>
-        <li><NavLink to='/blog'>Blog</NavLink></li>
-        <li><NavLink to='/contact'>Contact</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/services'>Services</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/coverage'>Coverage</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/aboutUs'>About Us</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/pricing'>Pricing</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/blog'>Blog</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/contact'>Contact</NavLink></li>
     </>
 
     return (
