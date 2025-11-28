@@ -26,13 +26,13 @@ const AboutUs = () => {
     }
 
     return (
-        <div className='md: max-w-7xl md:mx-auto mx-3 min-h-screen '>
-            <div className='bg-white rounded-2xl p-15 my-10'>
+        <div className='md:max-w-7xl md:mx-auto min-h-screen '>
+            <div className='bg-white rounded-2xl md:p-15 p-5 my-10'>
                 <h1 className='text-2xl md:text-3xl text-secondary font-extrabold'>About Us</h1>
-                <p className='text-txt w-1/2 mt-5'>Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
+                <p className='text-txt md:w-1/2 mt-5'>Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.</p>
 
                 <div className='mt-5 pt'>
-                    <div className='flex items-center py-10 gap-10'>
+                    <div className='flex flex-wrap items-center py-10 gap-10'>
                         <h4
                             onClick={() => handleSetData('Story')}
                             className={`text-xl font-semibold text-txt cursor-pointer ${(value == 'Story' || value == null) && 'text-lime-800'}`}

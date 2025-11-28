@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useLoaderData } from 'react-router';
+import { IoSearchOutline } from "react-icons/io5";
 
 const Coverage = () => {
     const position = [23.6850, 90.3563];
@@ -21,33 +22,32 @@ const Coverage = () => {
     }
 
     return (
-        <div className='p-15 bg-white rounded-2xl my-15'>
+        <div className='md:p-15 p-5 bg-white rounded-2xl my-15'>
             <h1 className='md:text-3xl text-2xl font-extrabold text-secondary mb-5'>We are available in 64 districts</h1>
 
             <form onSubmit={handleSearch}>
-                <label className="input">
-                    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            strokeLinejoin="round"
-                            strokeLinecap="round"
-                            strokeWidth="2.5"
-                            fill="none"
-                            stroke="currentColor"
-                        >
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-                    <input type="search" className="grow" placeholder="Search" name='location' />
+                <label className='flex items-center'>
+                    <div className='flex items-center bg-gray-200 md:w-1/3 px-4 py-3 rounded-4xl text-[1rem]'>
+                        <IoSearchOutline size={24} />
+                        <input
+                            placeholder="Search"
+                            name='location'
+                            type="text"
+                            className='outline-none pl-4'
+                        />
+                    </div>
+                    <button className='btn btn-primary text-black text-xl font-semibold rounded-4xl py-[23px] -ml-15 px-4 w-30'>Search</button>
                 </label>
             </form>
 
-            <div className='w-full h-[600px] mt-5'>
+            <h1 className='md:text-2xl text-xl font-extrabold text-secondary mb-10 mt-10'>We deliver almost all over Bangladesh</h1>
+
+            <div className='w-full h-[400px] mt-5'>
                 <MapContainer
                     center={position}
                     zoom={8}
                     scrollWheelZoom={false}
-                    className='h-[600px]'
+                    className='h-[400px]'
                     ref={mapRef}
                 >
                     <TileLayer
