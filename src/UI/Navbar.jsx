@@ -1,8 +1,13 @@
 import React from 'react';
 import Logo from '../components/logo/Logo';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import useAuth from '../hooks/useAuth';
+import arrowIcon from '../assets/arrow.jpg'
 
 const Navbar = () => {
+
+    const { logOut, user } = useAuth();
+
     const links = <>
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/services'>Services</NavLink></li>
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/coverage'>Coverage</NavLink></li>
@@ -11,6 +16,12 @@ const Navbar = () => {
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/blog'>Blog</NavLink></li>
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/contact'>Contact</NavLink></li>
     </>
+
+    const handleLogOut = () => {
+        logOut()
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="navbar bg-base-100 rounded-2xl flex items-center md:px-6">
@@ -33,7 +44,15 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <div className='flex items-center gap-2'>
+                    {
+                        user ? <Link onClick={handleLogOut} className='w-27 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Log Out</Link> : <>
+                            <Link to={'/login'} className='w-27 btn border border-gray-200 text-xl font-bold rounded-xl'>Sign In</Link>
+                            <Link to={'/register'} className='w-27 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Sign Up</Link>
+                            <img src={arrowIcon} className={`rounded-full w-10 -ml-1.5`} alt="" />
+                        </>
+                    }
+                </div>
             </div>
         </div>
     );
