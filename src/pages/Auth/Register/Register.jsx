@@ -6,7 +6,7 @@ const Register = () => {
     const { register, handleSubmit, formState: {errors} } = useForm();
 
     const handleRegistration = (data) => {
-        console.log('after register', data);
+        // console.log('after register', data);
     }
 
     return (
