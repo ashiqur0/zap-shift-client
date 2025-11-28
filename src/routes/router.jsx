@@ -29,7 +29,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/aboutUs',
-                Component: AboutUs
+                Component: AboutUs,
+                loader: () => fetch('/aboutus.json')
             },
             {
                 path: '/pricing',

@@ -21,4 +21,6 @@ body {
 
 .active {
   background-color: #CAEB66;
+  font-weight: bold;
+  color: rgb(170, 23, 170);
 }
