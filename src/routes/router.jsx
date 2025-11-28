@@ -7,6 +7,7 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Pricing from "../pages/Pricing/Pricing";
 import Blog from "../pages/Blog/Blog";
 import Contact from "../pages/Contact/Contact";
+import PageNotFound from "../pages/Error/PageNotFound";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 Component: Contact
+            },
+            {
+                path: '/*',
+                Component: PageNotFound
             }
         ]
     }
