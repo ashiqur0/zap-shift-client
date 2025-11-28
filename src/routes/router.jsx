@@ -1,13 +1,16 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
 import Home from "../pages/Home/Home/Home";
-import Coverage from "../pages/Coverage/Coverage";
-import Services from "../pages/Services/Services";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import Pricing from "../pages/Pricing/Pricing";
-import Blog from "../pages/Blog/Blog";
-import Contact from "../pages/Contact/Contact";
+import Coverage from "../pages/Root/Coverage/Coverage";
+import Services from "../pages/Root/Services/Services";
+import AboutUs from "../pages/Root/AboutUs/AboutUs";
+import Pricing from "../pages/Root/Pricing/Pricing";
+import Blog from "../pages/Root/Blog/Blog";
+import Contact from "../pages/Root/Contact/Contact";
 import PageNotFound from "../pages/Error/PageNotFound";
+import AuthLayout from "../layout/AuthLayout";
+import Login from "../pages/Auth/Login/Login";
+import Register from "../pages/Auth/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +50,20 @@ const router = createBrowserRouter([
             {
                 path: '/*',
                 Component: PageNotFound
+            }
+        ]
+    },
+    {
+        path: '/',
+        Component: AuthLayout,
+        children: [
+            {
+                path: '/login',
+                Component: Login
+            },
+            {
+                path: '/register',
+                Component: Register
             }
         ]
     }
