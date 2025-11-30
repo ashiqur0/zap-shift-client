@@ -53,8 +53,8 @@ const FAQ = () => {
                 }
             </div>
 
-            <div className='w-full flex justify-center mt-10'>
-                <button onClick={() => setSeeMore(!seeMore)}
+            <div onClick={() => setSeeMore(!seeMore)} className='w-full flex justify-center mt-10'>
+                <button 
                     className='btn bg-primary text-[1rem] font-bold rounded-xl'>{seeMore ? "See Less FAQ's" : "See More FAQ's"}</button>
                 <img src={arrowIcon} className={`rounded-full w-10 ${seeMore ? "rotate-180" : 'rotate-0'}`} alt="" />
             </div>
