@@ -56,7 +56,7 @@ const Login = () => {
                         Login with Google
                     </button>
 
-                    <p>Don't have an account? <Link>register</Link> </p>
+                    <p>Don't have an account? <Link to='/register' className='text-blue-700'>register</Link> </p>
                 </fieldset>
             </form>
         </div>

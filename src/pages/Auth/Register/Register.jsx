@@ -61,7 +61,7 @@ const Register = () => {
                         Login with Google
                     </button>
 
-                    <p>Already have an account? <Link to='/login' className='text-blue-700'>Login</Link> </p>
+                    <p>Already have an account? <Link to='/login' className='text-blue-700'>login</Link> </p>
                 </fieldset>
             </form>
         </div>

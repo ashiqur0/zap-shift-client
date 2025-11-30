@@ -48,10 +48,13 @@ const Navbar = () => {
                     {
                         user ? <Link onClick={handleLogOut} className='w-27 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Log Out</Link> : <>
                             <Link to={'/login'} className='w-27 btn border border-gray-200 text-xl font-bold rounded-xl'>Sign In</Link>
-                            <Link to={'/register'} className='w-27 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Sign Up</Link>
-                            <img src={arrowIcon} className={`rounded-full w-10 -ml-1.5`} alt="" />
+
                         </>
                     }
+                    <Link to={'/be_a_rider'} className='flex items-center'>
+                        <p className='w-32 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Be a rider</p>
+                        <img src={arrowIcon} className={`rounded-full w-10`} alt="" />
+                    </Link>
                 </div>
             </div>
         </div>

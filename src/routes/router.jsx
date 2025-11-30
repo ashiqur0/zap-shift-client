@@ -11,6 +11,8 @@ import PageNotFound from "../pages/Error/PageNotFound";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import BeARider from "../pages/Private/BeARider";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +48,12 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 Component: Contact
+            },
+            {
+                path: '/be_a_rider',
+                element: <PrivateRoute>
+                    <BeARider />
+                </PrivateRoute> 
             },
             {
                 path: '/*',
