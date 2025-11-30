@@ -12,7 +12,7 @@ import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import PrivateRoute from "./PrivateRoute";
-import BeARider from "../pages/Private/BeARider";
+import Rider from "../pages/Private/Rider/Rider";
 
 const router = createBrowserRouter([
     {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             {
                 path: '/be_a_rider',
                 element: <PrivateRoute>
-                    <BeARider />
+                    <Rider />
                 </PrivateRoute> 
             },
             {
