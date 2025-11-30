@@ -2,15 +2,47 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import { Link } from 'react-router';
+import axios from 'axios';
 
 const Register = () => {
 
-    const { createUserWithEmail, loginWithGoogle } = useAuth();
+    const { createUserWithEmail, loginWithGoogle, updateUser } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleRegistration = (data) => {
+        const profileImage = data.photo[0];
+
         createUserWithEmail(data.email, data.password)
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result.user);
+
+                // store the image in form data
+                const formData = new FormData();
+                formData.append('image', profileImage);
+
+                // send photo to database and get url
+                const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`
+
+                axios.post(image_API_URL, formData)
+                    .then(res => {
+
+                        // update user profile to firebase
+                        const userProfile = {
+                            displayName: data.name,
+                            photoURL: res.data.data.url
+                        }
+
+
+                        updateUser(userProfile)
+                            .then(res => {
+                                console.log('user profile updated done, ', res);
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            })
+                    });
+
+            })
             .catch(err => console.log(err))
     }
 
@@ -26,6 +58,25 @@ const Register = () => {
 
             <form onSubmit={handleSubmit(handleRegistration)}>
                 <fieldset className="fieldset">
+
+                    <label className="label">Name</label>
+                    <input
+                        type="txt"
+                        className="input w-full mb-3"
+                        placeholder="Name"
+                        {...register('name', { required: true })}
+                    />
+                    {errors.name?.type === 'required' && <p className='text-red-500'>Name is required</p>}
+
+                    {/* Photo Image Field */}
+                    <label className="label">Photo</label>
+                    <input
+                        type="file"
+                        className="file-input w-full mb-3"
+                        placeholder="your photo"
+                        {...register('photo', { required: true })}
+                    />
+                    {errors.photo?.type === 'required' && <p className='text-red-500'>Photo is required</p>}
 
                     <label className="label">Email</label>
                     <input
