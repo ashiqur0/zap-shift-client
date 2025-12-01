@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router';
 
-const Logo = ({color='black'}) => {
+const Logo = ({color='secondary'}) => {
     return (
         <Link to={'/'} className='flex items-end'>
             <img className='md:w-8 w-7 h-auto' src={logo}></img>
