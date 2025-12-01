@@ -10,7 +10,7 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location);
+    // console.log(location);
 
     const handleLogin = (data) => {
         loginWithEmail(data.email, data.password)

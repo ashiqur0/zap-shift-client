@@ -11,7 +11,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location);
+    // console.log(location);
 
     const handleRegistration = (data) => {
         const profileImage = data.photo[0];
