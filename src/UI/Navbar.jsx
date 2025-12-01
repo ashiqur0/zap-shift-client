@@ -51,7 +51,7 @@ const Navbar = () => {
 
                         </>
                     }
-                    <Link to={'/be_a_rider'} className='flex items-center'>
+                    <Link to={'/rider'} className='flex items-center'>
                         <p className='w-32 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Be a rider</p>
                         <img src={arrowIcon} className={`rounded-full w-10`} alt="" />
                     </Link>

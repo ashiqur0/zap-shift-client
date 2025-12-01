@@ -50,7 +50,7 @@ const router = createBrowserRouter([
                 Component: Contact
             },
             {
-                path: '/be_a_rider',
+                path: '/rider',
                 element: <PrivateRoute>
                     <Rider />
                 </PrivateRoute> 
