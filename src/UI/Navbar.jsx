@@ -43,7 +43,7 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="md:flex hidden navbar-end">
                 <div className='flex items-center gap-2'>
                     {
                         user ? <Link onClick={handleLogOut} className='w-27 btn bg-primary text-xl text-[#1F1F1F] font-bold rounded-xl'>Log Out</Link> : <>
