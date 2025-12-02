@@ -15,6 +15,7 @@ const Navbar = () => {
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/pricing'>Pricing</NavLink></li>
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/blog'>Blog</NavLink></li>
         <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/contact'>Contact</NavLink></li>
+        <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/send_parcel'>Send Parcel</NavLink></li>
     </>
 
     const handleLogOut = () => {
