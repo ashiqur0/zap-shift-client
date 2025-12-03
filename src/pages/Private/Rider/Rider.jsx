@@ -19,79 +19,76 @@ const Rider = () => {
 
             <div className='flex md:flex-row justify-between items-center flex-col w-full'>
                 <form onSubmit={handleSubmit(handleSendParcel)} className='w-1/2'>
-                    <div className='my-8 gap-10'>
-                        {/* rider details */}
-                        <div className='w-full'>
-                            <fieldset className="fieldset w-full">
+                    <div className='w-full'>
+                        <fieldset className="fieldset w-full">
 
-                                <label className="label mt-4 text-[14px] text-black">Your Name</label>
-                                <input
-                                    type="text"
-                                    {...register('riderName')}
-                                    className="input w-5/7"
-                                    placeholder='Your Name'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Your Name</label>
+                            <input
+                                type="text"
+                                {...register('riderName')}
+                                className="input w-5/7"
+                                placeholder='Your Name'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Driving License Number</label>
-                                <input
-                                    type="text"
-                                    {...register('license')}
-                                    className="input w-5/7"
-                                    placeholder='Driving License Number'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Driving License Number</label>
+                            <input
+                                type="text"
+                                {...register('license')}
+                                className="input w-5/7"
+                                placeholder='Driving License Number'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Your Email</label>
-                                <input
-                                    type="text"
-                                    {...register('riderEmail')}
-                                    className="input w-5/7"
-                                    placeholder='Your Email'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Your Email</label>
+                            <input
+                                type="text"
+                                {...register('riderEmail')}
+                                className="input w-5/7"
+                                placeholder='Your Email'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Your Region</label>
-                                <input
-                                    type="text"
-                                    {...register('senderRegion')}
-                                    className="input w-5/7"
-                                    placeholder='Select Your Region'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Your Region</label>
+                            <input
+                                type="text"
+                                {...register('senderRegion')}
+                                className="input w-5/7"
+                                placeholder='Select Your Region'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Your District</label>
-                                <input
-                                    type="text"
-                                    {...register('senderDistrict')}
-                                    className="input w-5/7"
-                                    placeholder='Select Your District'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Your District</label>
+                            <input
+                                type="text"
+                                {...register('senderDistrict')}
+                                className="input w-5/7"
+                                placeholder='Select Your District'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Bike Brand Model and Year</label>
-                                <input
-                                    type="text"
-                                    {...register('bikeBrandModelYear')}
-                                    className="input w-5/7"
-                                    placeholder='Bike Brand Model and Year'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Bike Brand Model and Year</label>
+                            <input
+                                type="text"
+                                {...register('bikeBrandModelYear')}
+                                className="input w-5/7"
+                                placeholder='Bike Brand Model and Year'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Bike Registration Number</label>
-                                <input
-                                    type="text"
-                                    {...register('bikeRegistrationNumber')}
-                                    className="input w-5/7"
-                                    placeholder='Bike Registration Number'
-                                />
+                            <label className="label mt-4 text-[14px] text-black">Bike Registration Number</label>
+                            <input
+                                type="text"
+                                {...register('bikeRegistrationNumber')}
+                                className="input w-5/7"
+                                placeholder='Bike Registration Number'
+                            />
 
-                                <label className="label mt-4 text-[14px] text-black">Tell Us About Yourself</label>
-                                <input
-                                    type="text"
-                                    {...register('aboutRider')}
-                                    className="input w-5/7"
-                                    placeholder='Tell Us About Yourself'
-                                />
-                            </fieldset>
-                        </div>
+                            <label className="label mt-4 text-[14px] text-black">Tell Us About Yourself</label>
+                            <input
+                                type="text"
+                                {...register('aboutRider')}
+                                className="input w-5/7"
+                                placeholder='Tell Us About Yourself'
+                            />
+                        </fieldset>
                     </div>
 
-                    <button type="submit" className='btn btn-primary text-black w-80'>Proceed to Confirm Booking</button>
+                    <button type="submit" className='btn btn-primary text-black w-80 mt-8'>Proceed to Confirm Booking</button>
                 </form>
 
                 <div className='grid grid-1 items-center'>

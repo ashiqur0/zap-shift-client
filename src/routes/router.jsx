@@ -60,7 +60,8 @@ const router = createBrowserRouter([
                 path: '/send_parcel',
                 element: <PrivateRoute>
                     <SendParcel />
-                </PrivateRoute> 
+                </PrivateRoute>,
+                loader: () => fetch('/service_centers.json')
             },
             {
                 path: '/*',
