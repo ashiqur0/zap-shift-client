@@ -11,11 +11,13 @@ const SendParcel = () => {
 
     return (
         <div className='md:max-w-7xl md:mx-auto my-20'>
-            <h1>Send Parcel page</h1>
-            <form onSubmit={handleSubmit(handleSendParcel)} className='mt-12 p-4 text-black'>
+            <h1 className='md:text-3xl text-2xl font-extrabold text-secondary'>Send Parcel page</h1>
+            <h1 className='text-2xl font-extrabold text-secondary mt-12'>Enter Your Parcel Details</h1>
+
+            <form onSubmit={handleSubmit(handleSendParcel)} className='p-4 text-black'>
                 {/* parcel type */}
                 <div>
-                    <label className="label mr-4">
+                    <label className="label mr-4 text-secondary font-semibold">
                         <input
                             type="radio"
                             {...register('parcelType')}
@@ -25,7 +27,7 @@ const SendParcel = () => {
                         Document
                     </label>
 
-                    <label className="label mt-4">
+                    <label className="label mt-4 text-secondary font-semibold">
                         <input
                             type="radio"
                             {...register('parcelType')}
@@ -40,7 +42,7 @@ const SendParcel = () => {
                 {/* parcel info: name, weight*/}
                 <div className='grid grid-cols-1 md:grid-cols-2 my-8 gap-10'>
                     <fieldset className="fieldset">
-                        <label className="label mt-4">Parcel Name</label>
+                        <label className="label mt-4 text-[14px] text-black">Parcel Name</label>
                         <input
                             type="text"
                             {...register('parcelName')}
@@ -50,7 +52,7 @@ const SendParcel = () => {
                     </fieldset>
 
                     <fieldset className="fieldset">
-                        <label className="label mt-4">Parcel Weight</label>
+                        <label className="label mt-4 text-[14px] text-black">Parcel Weight</label>
                         <input
                             type="number"
                             {...register('parcelWeight')}
@@ -64,9 +66,9 @@ const SendParcel = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 my-8 gap-10'>
                     {/* sender details */}
                     <div>
-                        <h3 className='md:text-3xl text-2xl font-semibold'>Sender Details</h3>
+                        <h3 className='md:text-2xl text-xl text-secondary font-semibold'>Sender Details</h3>
                         <fieldset className="fieldset">
-                            <label className="label mt-4">Sender Name</label>
+                            <label className="label mt-4 text-[14px] text-black">Sender Name</label>
                             <input
                                 type="text"
                                 {...register('senderName')}
@@ -74,7 +76,7 @@ const SendParcel = () => {
                                 placeholder='Sender Name'
                             />
 
-                            <label className="label mt-4">Address</label>
+                            <label className="label mt-4 text-[14px] text-black">Address</label>
                             <input
                                 type="text"
                                 {...register('senderAddress')}
@@ -82,7 +84,7 @@ const SendParcel = () => {
                                 placeholder='Address'
                             />
 
-                            <label className="label mt-4">Sender Phone No</label>
+                            <label className="label mt-4 text-[14px] text-black">Sender Phone No</label>
                             <input
                                 type="text"
                                 {...register('senderPhone')}
@@ -90,7 +92,7 @@ const SendParcel = () => {
                                 placeholder='Sender Phone No'
                             />
 
-                            <label className="label mt-4">Sender District</label>
+                            <label className="label mt-4 text-[14px] text-black">Sender District</label>
                             <input
                                 type="text"
                                 {...register('senderDistrict')}
@@ -98,7 +100,7 @@ const SendParcel = () => {
                                 placeholder='Your District'
                             />
 
-                            <label className="label mt-4">Pickup Instruction</label>
+                            <label className="label mt-4 text-[14px] text-black">Pickup Instruction</label>
                             <input
                                 type="text"
                                 {...register('pickup_instruction')}
@@ -110,9 +112,9 @@ const SendParcel = () => {
 
                     {/* receiver details */}
                     <div>
-                        <h3 className='md:text-3xl text-2xl font-semibold'>Receiver Details</h3>
+                        <h3 className='md:text-2xl text-xl text-secondary font-semibold'>Receiver Details</h3>
                         <fieldset className="fieldset">
-                            <label className="label mt-4">Receiver Name</label>
+                            <label className="label mt-4 text-[14px] text-black">Receiver Name</label>
                             <input
                                 type="text"
                                 {...register('receiverName')}
@@ -120,7 +122,7 @@ const SendParcel = () => {
                                 placeholder='Receiver Name'
                             />
 
-                            <label className="label mt-4">Address</label>
+                            <label className="label mt-4 text-[14px] text-black">Address</label>
                             <input
                                 type="text"
                                 {...register('receiverAddress')}
@@ -128,7 +130,7 @@ const SendParcel = () => {
                                 placeholder='Address'
                             />
 
-                            <label className="label mt-4">Receiver Phone No</label>
+                            <label className="label mt-4 text-[14px] text-black">Receiver Phone No</label>
                             <input
                                 type="text"
                                 {...register('receiverPhone')}
@@ -136,7 +138,7 @@ const SendParcel = () => {
                                 placeholder='Receiver Phone No'
                             />
 
-                            <label className="label mt-4">Receiver District</label>
+                            <label className="label mt-4 text-[14px] text-black">Receiver District</label>
                             <input
                                 type="text"
                                 {...register('receiverDistrict')}
@@ -144,7 +146,7 @@ const SendParcel = () => {
                                 placeholder='Receiver District'
                             />
 
-                            <label className="label mt-4">Pickup Instruction</label>
+                            <label className="label mt-4 text-[14px] text-black">Pickup Instruction</label>
                             <input
                                 type="text"
                                 {...register('pickup_instruction')}
@@ -155,7 +157,9 @@ const SendParcel = () => {
                     </div>
                 </div>
 
-                <button type="submit" className='btn btn-primary text-black w-30'>Send Parcel</button>
+                <p className='mb-10'>* PickUp Time 4pm-7pm Approx.</p>
+
+                <button type="submit" className='btn btn-primary text-black w-80'>Proceed to Confirm Booking</button>
             </form >
         </div >
     );
