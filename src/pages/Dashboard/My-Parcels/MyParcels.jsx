@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaEdit } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const MyParcels = () => {
 
@@ -17,7 +18,35 @@ const MyParcels = () => {
             const res = await axiosSecure.get(`/parcels?email=${user.email}`)
             return res.data;
         }
-    })
+    });
+
+    const handleParcelDelete = id => {
+        console.log(id);
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.delete(`/parcels/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                    })
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
 
     return (
         <div className='md:max-w-7xl md:mx-auto p-4'>
@@ -46,7 +75,7 @@ const MyParcels = () => {
                                     <button className='btn btn-square hover:bg-primary'><FaMagnifyingGlass />
                                     </button>
                                     <button className='btn btn-square hover:bg-primary'><FaEdit /></button>
-                                    <button className='btn btn-square hover:bg-primary'><FaRegTrashAlt /></button>
+                                    <button onClick={() => handleParcelDelete(parcel._id)} className='btn btn-square hover:bg-primary'><FaRegTrashAlt /></button>
                                 </td>
                             </tr>)
                         }
