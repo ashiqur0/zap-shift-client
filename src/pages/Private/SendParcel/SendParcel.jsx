@@ -2,10 +2,18 @@ import React from 'react';
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2'
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const SendParcel = () => {
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        control,
+        // formState: { errors }
+    } = useForm();
+
+    const axiosSecure = useAxiosSecure();
     const serviceCenters = useLoaderData();
     const regionsDuplicates = serviceCenters.map(c => c.region);
     const regions = [...new Set(regionsDuplicates)];
@@ -39,7 +47,7 @@ const SendParcel = () => {
             }
         }
 
-        console.log(cost);
+        console.log('cost', cost, data);
         Swal.fire({
             title: "Agree with the cost?",
             text: `You will be charged ${cost} taka`,
@@ -50,6 +58,12 @@ const SendParcel = () => {
             confirmButtonText: "I agree"
         }).then((result) => {
             if (result.isConfirmed) {
+                // save the parcel info to database
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saving parcel..', res.data);
+                    })
+
                 Swal.fire({
                     title: "Noted!",
                     text: "Your parcel has been taken.",
@@ -239,14 +253,6 @@ const SendParcel = () => {
                                 {...register('receiverPhone')}
                                 className="input w-full"
                                 placeholder='Receiver Phone No'
-                            />
-
-                            <label className="label mt-4 text-[14px] text-black">Pickup Instruction</label>
-                            <input
-                                type="text"
-                                {...register('pickup_instruction')}
-                                className="input w-full"
-                                placeholder='Pickup Instruction'
                             />
                         </fieldset>
                     </div>
