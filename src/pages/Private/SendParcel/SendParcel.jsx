@@ -1,26 +1,44 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from 'react-router';
 
 const SendParcel = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, control, formState: { errors } } = useForm();
     const serviceCenters = useLoaderData();
     const regionsDuplicates = serviceCenters.map(c => c.region);
     const regions = [...new Set(regionsDuplicates)];
 
-    const senderRegion = watch('senderRegion');
-    // console.log(senderRegion);
+    const senderRegion = useWatch({control, name: 'senderRegion'});
+    const receiverRegion = useWatch({control, name: 'receiverRegion'});
 
     const districtsByRegion = region => {
         const districtsByRegions = serviceCenters.filter(center => center.region === region);
         const districts = districtsByRegions.map(d => d.district);
-        // console.log(districts);
         return districts;
     }
 
     const handleSendParcel = data => {
-        console.log(data);
+
+        const isDocument = data.parcelType === 'document';
+        const isSameDistrict = data.senderDistrict === data.receiverDistrict;
+        const parcelWeight = parseFloat(data.parcelWeight);
+        let cost = 0;
+
+        if (isDocument) {
+            cost = isSameDistrict ? 60 : 80;
+        } else {
+            if (parcelWeight < 3) {
+                cost = isSameDistrict ? 110 : 150;
+            } else {
+                const minimumCharge = isSameDistrict ? 110 : 150;
+                const extraWeight = parcelWeight - 3;
+                const extraCharge = isSameDistrict ? extraWeight * 40 : extraWeight * 40 + 40;
+                cost = minimumCharge + extraCharge;
+            }
+        }
+
+        console.log(cost);
     }
 
     return (
@@ -168,24 +186,26 @@ const SendParcel = () => {
                             />
                             
                             {/* receiver region */}
-                            <fieldset className="fieldset w-full mt-4">
-                                <legend className="fieldset-legend w-full">Sender Regions</legend>
+                            <fieldset className="fieldset mt-4">
+                                <legend className="fieldset-legend w-full">Receiver Regions</legend>
                                 <select {...register('receiverRegion')} defaultValue="Select Region" className="select w-full">
                                     <option disabled={true}>Select Region</option>
                                     {
                                         regions.map((region, index) => <option key={index} value={region}>{region}</option>)
                                     }
                                 </select>
-                                {/* <span className="label">Optional</span> */}
                             </fieldset>
 
-                            <label className="label mt-4 text-[14px] text-black">Receiver District</label>
-                            <input
-                                type="text"
-                                {...register('receiverDistrict')}
-                                className="input w-full"
-                                placeholder='Receiver District'
-                            />
+                             {/* receiver district */}
+                            <fieldset className="fieldset mt-4">
+                                <legend className="fieldset-legend w-full">Receiver District</legend>
+                                <select {...register('receiverDistrict')} defaultValue="Select District" className="select w-full">
+                                    <option disabled={true}>Select District</option>
+                                    {
+                                        districtsByRegion(receiverRegion).map((region, index) => <option key={index} value={region}>{region}</option>)
+                                    }
+                                </select>
+                            </fieldset>
 
                             <label className="label mt-4 text-[14px] text-black">Address</label>
                             <input
