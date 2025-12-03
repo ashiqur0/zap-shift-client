@@ -3,6 +3,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
 
 const SendParcel = () => {
 
@@ -12,6 +13,8 @@ const SendParcel = () => {
         control,
         // formState: { errors }
     } = useForm();
+
+    const { user } = useAuth();
 
     const axiosSecure = useAxiosSecure();
     const serviceCenters = useLoaderData();
@@ -136,6 +139,7 @@ const SendParcel = () => {
                             <input
                                 type="text"
                                 {...register('senderName')}
+                                defaultValue={user?.displayName}
                                 className="input w-full"
                                 placeholder='Sender Name'
                             />
@@ -144,6 +148,7 @@ const SendParcel = () => {
                             <input
                                 type="email"
                                 {...register('senderEmail')}
+                                defaultValue={user?.email}
                                 className="input w-full"
                                 placeholder='Sender Email'
                             />

@@ -14,6 +14,7 @@ import Register from "../pages/Auth/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/Private/Rider/Rider";
 import SendParcel from "../pages/Private/SendParcel/SendParcel";
+import DashBoardLayout from "../layout/DashboardLayout";
 
 const router = createBrowserRouter([
     {
@@ -82,6 +83,12 @@ const router = createBrowserRouter([
                 Component: Register
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute>
+            <DashBoardLayout></DashBoardLayout>
+        </PrivateRoute>
     }
 ]);
 
