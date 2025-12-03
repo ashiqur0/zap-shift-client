@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2'
 
 const SendParcel = () => {
 
@@ -9,8 +10,8 @@ const SendParcel = () => {
     const regionsDuplicates = serviceCenters.map(c => c.region);
     const regions = [...new Set(regionsDuplicates)];
 
-    const senderRegion = useWatch({control, name: 'senderRegion'});
-    const receiverRegion = useWatch({control, name: 'receiverRegion'});
+    const senderRegion = useWatch({ control, name: 'senderRegion' });
+    const receiverRegion = useWatch({ control, name: 'receiverRegion' });
 
     const districtsByRegion = region => {
         const districtsByRegions = serviceCenters.filter(center => center.region === region);
@@ -39,6 +40,23 @@ const SendParcel = () => {
         }
 
         console.log(cost);
+        Swal.fire({
+            title: "Agree with the cost?",
+            text: `You will be charged ${cost} taka`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "I agree"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Noted!",
+                    text: "Your parcel has been taken.",
+                    icon: "success"
+                });
+            }
+        });
     }
 
     return (
@@ -116,7 +134,7 @@ const SendParcel = () => {
                                 placeholder='Sender Email'
                             />
 
-                            
+
                             {/* sender region */}
                             <fieldset className="fieldset mt-4">
                                 <legend className="fieldset-legend w-full">Sender Regions</legend>
@@ -184,7 +202,7 @@ const SendParcel = () => {
                                 className="input w-full"
                                 placeholder='Receiver Email'
                             />
-                            
+
                             {/* receiver region */}
                             <fieldset className="fieldset mt-4">
                                 <legend className="fieldset-legend w-full">Receiver Regions</legend>
@@ -196,7 +214,7 @@ const SendParcel = () => {
                                 </select>
                             </fieldset>
 
-                             {/* receiver district */}
+                            {/* receiver district */}
                             <fieldset className="fieldset mt-4">
                                 <legend className="fieldset-legend w-full">Receiver District</legend>
                                 <select {...register('receiverDistrict')} defaultValue="Select District" className="select w-full">
