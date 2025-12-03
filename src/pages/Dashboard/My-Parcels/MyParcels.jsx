@@ -6,13 +6,14 @@ import { FaEdit } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyParcels = () => {
 
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const { data: parcels = [] } = useQuery({
+    const { data: parcels = [], refetch } = useQuery({
         queryKey: ['myParcels', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/parcels?email=${user.email}`)
@@ -36,14 +37,15 @@ const MyParcels = () => {
 
                 axiosSecure.delete(`/parcels/${id}`)
                     .then(res => {
-                        console.log(res.data);
+                        if (res.data.deletedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your parcel request has been deleted.",
+                                icon: "success"
+                            });
+                        }
                     })
-
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
             }
         });
     }
@@ -56,22 +58,29 @@ const MyParcels = () => {
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th>Si. No.</th>
-                            <th>Parcel Name</th>
-                            <th>Cost</th>
-                            <th>Payment Status</th>
-                            <th>Actions</th>
+                        <tr className='grid grid-cols-18 text-center'>
+                            <th className='col-span-2'>Si. No.</th>
+                            <th className='col-span-3'>Parcel Name</th>
+                            <th className='col-span-3'>Cost</th>
+                            <th className='col-span-3'>Payment Status</th>
+                            <th className='col-span-3'>Delivery Status</th>
+                            <th className='col-span-4'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            parcels.map((parcel, index) => <tr key={parcel._id}>
-                                <th>{index + 1}</th>
-                                <td>{parcel.parcelName}</td>
-                                <td>{parcel.cost}</td>
-                                <td></td>
-                                <td>
+                            parcels.map((parcel, index) => <tr key={parcel._id} className='grid grid-cols-18 text-center'>
+                                <th className='col-span-2'>{index + 1}</th>
+                                <td className='col-span-3'>{parcel.parcelName}</td>
+                                <td className='col-span-3'>{parcel.cost}</td>
+                                <td className='col-span-3'>
+                                    {
+                                        parcel.paymentStatus === 'paid' ? <span className='text-green-500'>Paid</span> :
+                                            <Link to={`/dashboard/payment/${parcel._id}`} className='btn btn-sm btn-primary text-black'>Pay</Link>
+                                    }
+                                </td>
+                                <td className='col-span-3'>{parcel.deliveryStatus}</td>
+                                <td className='col-span-4 space-x-4'>
                                     <button className='btn btn-square hover:bg-primary'><FaMagnifyingGlass />
                                     </button>
                                     <button className='btn btn-square hover:bg-primary'><FaEdit /></button>
