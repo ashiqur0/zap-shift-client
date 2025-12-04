@@ -5,6 +5,7 @@ import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5';
 import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
+import { MdOutlinePayments } from "react-icons/md";
 
 const DashboardLayout = () => {
 
@@ -48,6 +49,13 @@ const DashboardLayout = () => {
                             className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
                             data-tip="My Parcels"><AiOutlineGift size={20} />
                             <span className='is-drawer-close:hidden'>My Parcels</span>
+                        </NavLink></li>
+
+                        <li><NavLink
+                            to='/dashboard/payment-history'
+                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                            data-tip="My Parcels"><MdOutlinePayments size={20} />
+                            <span className='is-drawer-close:hidden'>Payment History</span>
                         </NavLink></li>
                         
                         <li><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
