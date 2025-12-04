@@ -53,13 +53,13 @@ const MyParcels = () => {
     const handlePayment = async (parcel) => {
         const paymentInfo = {
             cost: parcel.cost,
-            parcelId: parcel.parcelId,
+            parcelId: parcel._id,
             senderEmail: parcel.senderEmail,
             parcelName: parcel.parcelName
         }
 
         const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
-        window.location.href = res.data.url;
+        window.location.assign(res.data.url);
     }
 
     return (
