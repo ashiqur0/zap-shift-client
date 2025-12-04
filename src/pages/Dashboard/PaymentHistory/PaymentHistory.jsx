@@ -29,6 +29,7 @@ const PaymentHistory = () => {
                             <th>Si No.</th>
                             <th>Name</th>
                             <th>Amount</th>
+                            <th>Payment Time</th>
                             <th>Transaction Id</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@ const PaymentHistory = () => {
                                 <th>{index + 1}</th>
                                 <td>{payment.parcelName}</td>
                                 <td>${payment.amount}</td>
+                                <td>{payment.paidAt}</td>
                                 <td>{payment.transactionId}</td>
                             </tr>
                             )
