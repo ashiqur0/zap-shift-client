@@ -74,7 +74,7 @@ const SendParcel = () => {
                                 position: "top-end",
                                 icon: "success",
                                 title: "Parcel has created. Please pay!",
-                                showConfirmationButton: false,
+                                showConfirmButton: false,
                                 timer: 2500
                             });
                         }
