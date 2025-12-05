@@ -23,11 +23,13 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import Loading from "../components/loading/Loading";
 import ApproveRiders from "../pages/Dashboard/Approve-Riders/ApproveRiders";
 import UsersManagement from "../pages/Dashboard/Users-Management/UsersManagement";
+import Forbidden from "../components/Forbidden/Forbidden";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        Component: RootLayout,
+        element: <RootLayout />,
+        errorElement: <PageNotFound />,
         children: [
             {
                 index: true,
@@ -78,8 +80,8 @@ const router = createBrowserRouter([
                 hydrateFallbackElement: <Loading />
             },
             {
-                path: '/*',
-                Component: PageNotFound
+                path: '/forbidden',
+                Component: <Forbidden />
             }
         ]
     },
@@ -129,7 +131,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'users-management',
-                Component: UsersManagement
+                element: <AdminRoute><UsersManagement /></AdminRoute>
             }
         ]
     }
