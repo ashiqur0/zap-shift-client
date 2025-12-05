@@ -4,6 +4,7 @@ import rider from '../../../assets/agent-pending.png'
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Rider = () => {
 
@@ -30,8 +31,6 @@ const Rider = () => {
     }
 
     const handleBeARider = data => {
-        console.log(data);
-
         const rider = {
             name: data.name,
             license: data.license,
@@ -47,7 +46,15 @@ const Rider = () => {
 
         axiosSecure.post('/riders', rider)
             .then(res => {
-                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your application has been submitted",
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
             })
     }
 
