@@ -7,10 +7,12 @@ import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
 import { FaUsers } from 'react-icons/fa';
+import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
 
     const [expand, setExpand] = useState(true);
+    const { role } = useRole();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -59,20 +61,24 @@ const DashboardLayout = () => {
                             <span className='is-drawer-close:hidden'>Payment History</span>
                         </NavLink></li>
 
-                        <li><NavLink
-                            to='/dashboard/approve-riders'
-                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
-                            data-tip="Approve Riders"><MdDirectionsBike size={20} />
-                            <span className='is-drawer-close:hidden'>Approve Riders</span>
-                        </NavLink></li>
+                        {
+                            role === 'admin' && <>
+                                <li><NavLink
+                                    to='/dashboard/approve-riders'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Approve Riders"><MdDirectionsBike size={20} />
+                                    <span className='is-drawer-close:hidden'>Approve Riders</span>
+                                </NavLink></li>
 
-                        <li><NavLink
-                            to='/dashboard/users-management'
-                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
-                            data-tip="Users Management"><FaUsers size={20} />
-                            <span className='is-drawer-close:hidden'>Users Management</span>
-                        </NavLink></li>
-                        
+                                <li><NavLink
+                                    to='/dashboard/users-management'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Users Management"><FaUsers size={20} />
+                                    <span className='is-drawer-close:hidden'>Users Management</span>
+                                </NavLink></li>
+                            </>
+                        }
+
                         <li><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
                             <IoSettingsOutline size={20} />
                             <span className="is-drawer-close:hidden">Settings</span>
