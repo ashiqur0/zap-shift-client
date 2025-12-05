@@ -4,14 +4,17 @@ import { useQuery } from '@tanstack/react-query';
 import { FaUserShield } from 'react-icons/fa';
 import { FiShieldOff } from "react-icons/fi";
 import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const UsersManagement = () => {
 
+    const [searchText, setSearchText] = useState('');
+
     const axiosSecure = useAxiosSecure();
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['users', searchText],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
+            const res = await axiosSecure.get(`/users/?searchText=${searchText}`);
             return res.data;
         }
     });
@@ -39,6 +42,22 @@ const UsersManagement = () => {
         <div className='md:max-w-7xl md:mx-auto p-4'>
             <h1>Users management page</h1>
             <h3>Total users({users.length})</h3>
+
+            <label className="input">
+                <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        strokeWidth="2.5"
+                        fill="none"
+                        stroke="currentColor"
+                    >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+                <input onChange={(e) => setSearchText(e.target.value)} type="search" className="grow" placeholder="Search" />
+            </label>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -83,7 +102,7 @@ const UsersManagement = () => {
                                             ><FiShieldOff />
                                             </button> :
 
-                                            <button 
+                                            <button
                                                 className='bg-green-400 btn btn-sm'
                                                 onClick={() => handleSetUserRole(user, 'admin')}
                                             ><FaUserShield />
