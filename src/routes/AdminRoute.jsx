@@ -3,7 +3,6 @@ import useAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
 import Loading from '../components/loading/Loading';
 import Forbidden from '../components/Forbidden/Forbidden';
-import { Navigate } from 'react-router';
 
 const AdminRoute = ({ children }) => {
 
@@ -11,7 +10,7 @@ const AdminRoute = ({ children }) => {
     const { role, roleLoading } = useRole();
 
     if (loading || roleLoading) return <Loading />
-    if (role !== 'admin') return <Navigate to='/forbidden' />
+    if (role !== 'admin') return <Forbidden />
 
     return children;
 };

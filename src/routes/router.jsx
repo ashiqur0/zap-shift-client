@@ -24,6 +24,7 @@ import Loading from "../components/loading/Loading";
 import ApproveRiders from "../pages/Dashboard/Approve-Riders/ApproveRiders";
 import UsersManagement from "../pages/Dashboard/Users-Management/UsersManagement";
 import Forbidden from "../components/Forbidden/Forbidden";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -127,7 +128,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'approve-riders',
-                Component: ApproveRiders
+                element: <AdminRoute><ApproveRiders /></AdminRoute>
             },
             {
                 path: 'users-management',
