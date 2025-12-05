@@ -3,12 +3,13 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaTrashAlt, FaUserCheck } from 'react-icons/fa';
 import { IoPersonRemoveSharp } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 
 const ApproveRiders = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const { data: riders = [] } = useQuery({
+    const { data: riders = [], refetch } = useQuery({
         queryKey: ['riders', 'pending'],
         queryFn: async () => {
             const res = await axiosSecure.get('/riders');
@@ -16,9 +17,23 @@ const ApproveRiders = () => {
         }
     })
 
-    const handleApproval = id => {
-        console.log(id);
-        
+    const updateRiderStatus = (rider, status) => {
+        const updateInfo = { status: status, email: rider.email };
+
+        axiosSecure.patch(`/riders/${rider._id}`, updateInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    refetch();
+
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Rider's status has been updated",
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
     }
 
     return (
@@ -42,27 +57,28 @@ const ApproveRiders = () => {
                     </thead>
                     <tbody>
                         {
-                            riders.map((rider, index) => <tr>
+                            riders.map((rider, index) => <tr key={rider._id}>
                                 <th>{index + 1}</th>
                                 <th>{rider.name}</th>
                                 <th>{rider.email}</th>
                                 <th>{rider.district}</th>
-                                <th>{rider.status}</th>
+                                <th className={`${(rider.status === 'approved' && 'text-green-500') || (rider.status === 'cancelled' && 'text-red-500') }`}>{rider.status}</th>
                                 <th>
                                     <button
-                                        onClick={() => handleApproval(rider._id)}
+                                        onClick={() => updateRiderStatus(rider, 'approved')}
                                         className='btn btn-sm'
-                                        ><FaUserCheck />
+                                    ><FaUserCheck />
+                                    </button>
+
+                                    <button
+                                        onClick={() => updateRiderStatus(rider, 'cancelled')}
+                                        className='btn btn-sm'
+                                    ><IoPersonRemoveSharp />
                                     </button>
 
                                     <button
                                         className='btn btn-sm'
-                                        ><IoPersonRemoveSharp />
-                                    </button>
-
-                                    <button 
-                                        className='btn btn-sm'
-                                        ><FaTrashAlt />
+                                    ><FaTrashAlt />
                                     </button>
                                 </th>
                             </tr>)
