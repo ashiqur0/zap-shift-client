@@ -1,7 +1,7 @@
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { FaTrashAlt, FaUserCheck } from 'react-icons/fa';
+import { FaEye, FaTrashAlt, FaUserCheck } from 'react-icons/fa';
 import { IoPersonRemoveSharp } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 
@@ -64,6 +64,11 @@ const ApproveRiders = () => {
                                 <th>{rider.district}</th>
                                 <th className={`${(rider.status === 'approved' && 'text-green-500') || (rider.status === 'cancelled' && 'text-red-500') }`}>{rider.status}</th>
                                 <th>
+                                    <button
+                                        className='btn btn-sm'
+                                    ><FaEye />
+                                    </button>
+
                                     <button
                                         onClick={() => updateRiderStatus(rider, 'approved')}
                                         className='btn btn-sm'

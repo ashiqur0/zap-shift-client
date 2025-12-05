@@ -6,6 +6,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
+import { FaUsers } from 'react-icons/fa';
 
 const DashboardLayout = () => {
 
@@ -63,6 +64,13 @@ const DashboardLayout = () => {
                             className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
                             data-tip="Approve Riders"><MdDirectionsBike size={20} />
                             <span className='is-drawer-close:hidden'>Approve Riders</span>
+                        </NavLink></li>
+
+                        <li><NavLink
+                            to='/dashboard/users-management'
+                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                            data-tip="Users Management"><FaUsers size={20} />
+                            <span className='is-drawer-close:hidden'>Users Management</span>
                         </NavLink></li>
                         
                         <li><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
