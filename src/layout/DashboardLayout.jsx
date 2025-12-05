@@ -5,7 +5,7 @@ import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5';
 import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
-import { MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
+import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
 import { FaUsers } from 'react-icons/fa';
 import useRole from '../hooks/useRole';
 
@@ -68,6 +68,13 @@ const DashboardLayout = () => {
                                     className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
                                     data-tip="Approve Riders"><MdDirectionsBike size={20} />
                                     <span className='is-drawer-close:hidden'>Approve Riders</span>
+                                </NavLink></li>
+
+                                <li><NavLink
+                                    to='/dashboard/assign-riders'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Assign Riders"><MdAssignmentTurnedIn size={20} />
+                                    <span className='is-drawer-close:hidden'>Assign Riders</span>
                                 </NavLink></li>
 
                                 <li><NavLink
