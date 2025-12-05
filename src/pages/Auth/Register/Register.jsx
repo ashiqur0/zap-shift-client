@@ -15,6 +15,7 @@ const Register = () => {
     const axiosSecure = useAxiosSecure();
 
     const handleRegistration = (data) => {
+
         const profileImage = data.photo[0];
 
         createUserWithEmail(data.email, data.password)
@@ -39,9 +40,7 @@ const Register = () => {
 
                         axiosSecure.post('/users', userInfo)
                             .then(res => {
-                                if (res.data.insertedId) {
-                                    console.log('user created in the database', res);
-                                }
+                                console.log('user created in the database', res.data);
                             })
 
                         // update user profile to firebase

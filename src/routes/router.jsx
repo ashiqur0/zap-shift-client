@@ -20,6 +20,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCanceled from "../pages/Dashboard/Payment/PaymentCanceled";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import Loading from "../components/loading/Loading";
 
 const router = createBrowserRouter([
     {
@@ -37,12 +38,14 @@ const router = createBrowserRouter([
             {
                 path: '/coverage',
                 Component: Coverage,
-                loader: () => fetch('/service_centers.json')
+                loader: () => fetch('/service_centers.json'),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/aboutUs',
                 Component: AboutUs,
-                loader: () => fetch('/aboutus.json')
+                loader: () => fetch('/aboutus.json'),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/pricing',
@@ -60,14 +63,17 @@ const router = createBrowserRouter([
                 path: '/rider',
                 element: <PrivateRoute>
                     <Rider />
-                </PrivateRoute> 
+                </PrivateRoute>,
+                loader: () => fetch('/service_centers.json').then(res => res.json()),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/send_parcel',
                 element: <PrivateRoute>
                     <SendParcel />
                 </PrivateRoute>,
-                loader: () => fetch('/service_centers.json')
+                loader: () => fetch('/service_centers.json'),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/*',
