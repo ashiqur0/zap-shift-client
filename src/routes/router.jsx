@@ -26,6 +26,7 @@ import UsersManagement from "../pages/Dashboard/Users-Management/UsersManagement
 import Forbidden from "../components/Forbidden/Forbidden";
 import AdminRoute from "./AdminRoute";
 import AssignRiders from "../pages/Dashboard/Assign-Riders/AssignRiders";
+import AssignedDeliveries from "../pages/Dashboard/Assign-Deliveries/AssignedDeliveries";
 
 const router = createBrowserRouter([
     {
@@ -107,6 +108,8 @@ const router = createBrowserRouter([
             <DashBoardLayout></DashBoardLayout>
         </PrivateRoute>,
         children: [
+
+            // user only route
             {
                 path: 'my-parcels',
                 Component: MyParcels
@@ -127,6 +130,8 @@ const router = createBrowserRouter([
                 path: 'payment-history',
                 Component: PaymentHistory
             },
+
+            // admin only route
             {
                 path: 'approve-riders',
                 element: <AdminRoute><ApproveRiders /></AdminRoute>
@@ -138,6 +143,12 @@ const router = createBrowserRouter([
             {
                 path: 'assign-riders',
                 element: <AdminRoute><AssignRiders /></AdminRoute>
+            },
+
+            // rider only route
+            {
+                path: 'assigned-deliveries',
+                element: <AssignedDeliveries />
             }
         ]
     }

@@ -6,7 +6,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
-import { FaUsers } from 'react-icons/fa';
+import { FaTasks, FaUsers } from 'react-icons/fa';
 import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
@@ -46,21 +46,38 @@ const DashboardLayout = () => {
                             <span className="is-drawer-close:hidden">Homepage</span>
                         </Link></li>
 
-                        {/* dashboard links */}
-                        <li><NavLink
-                            to='/dashboard/my-parcels'
-                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
-                            data-tip="My Parcels"><AiOutlineGift size={20} />
-                            <span className='is-drawer-close:hidden'>My Parcels</span>
-                        </NavLink></li>
+                        {/* normal user and admin can access */}
+                        {
+                            (role === 'user' || role === 'admin') && <>
+                                <li><NavLink
+                                    to='/dashboard/my-parcels'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="My Parcels"><AiOutlineGift size={20} />
+                                    <span className='is-drawer-close:hidden'>My Parcels</span>
+                                </NavLink></li>
 
-                        <li><NavLink
-                            to='/dashboard/payment-history'
-                            className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
-                            data-tip="Payment History"><MdOutlinePayments size={20} />
-                            <span className='is-drawer-close:hidden'>Payment History</span>
-                        </NavLink></li>
+                                <li><NavLink
+                                    to='/dashboard/payment-history'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Payment History"><MdOutlinePayments size={20} />
+                                    <span className='is-drawer-close:hidden'>Payment History</span>
+                                </NavLink></li>
+                            </>
+                        }
 
+                        {/* rider and admin can access */}
+                        {
+                            (role === 'rider' || role === 'admin') && <>
+                                <li><NavLink
+                                    to='/dashboard/assigned-deliveries'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Assigned Deliveries"><FaTasks size={20} />
+                                    <span className='is-drawer-close:hidden'>Assigned Deliveries</span>
+                                </NavLink></li>
+                            </>
+                        }
+
+                        {/* admin only links */}
                         {
                             role === 'admin' && <>
                                 <li><NavLink
