@@ -18,7 +18,11 @@ const AssignedDeliveries = () => {
     });
 
     const handleDeliveryStatusUpdate = (parcel, status) => {
-        const statusInfo = { deliveryStatus: status };
+        const statusInfo = { 
+            deliveryStatus: status,
+            riderId: parcel.riderId
+         };
+
         axiosSecure.patch(`/parcels/${parcel._id}/status`, statusInfo)
             .then(res => {
                 if (res.data.modifiedCount) {
@@ -33,13 +37,6 @@ const AssignedDeliveries = () => {
                     });
                 }
             })
-
-        if (status === 'parcel_delivered') {
-            axiosSecure.patch(`/rider/${user._id}/status`)
-                .then(res => {
-                    console.log(res.data);
-                })
-        }
     }
 
     return (
