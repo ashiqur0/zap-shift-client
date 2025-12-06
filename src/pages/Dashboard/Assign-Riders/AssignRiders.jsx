@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useRef } from 'react';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const AssignRiders = () => {
 
@@ -10,7 +11,7 @@ const AssignRiders = () => {
     const riderModalRef = useRef();
     const [selectedParcel, setSelectedParcel] = useState('');
 
-    const { data: parcels = [] } = useQuery({
+    const { data: parcels = [], refetch } = useQuery({
         queryKey: ['parcels', 'pending-pickup'],
         queryFn: async () => {
             const res = await axiosSecure.get('/parcels?deliveryStatus=pending-pickup');
@@ -30,6 +31,31 @@ const AssignRiders = () => {
     const openAssignRiderModal = parcel => {
         setSelectedParcel(parcel);
         riderModalRef.current.showModal();
+    }
+
+    const handleAssignRider = rider => {
+        const riderAssignInfo = {
+            riderId: rider._id,
+            riderName: rider.name,
+            riderEmail: rider.email,
+            parcelId: selectedParcel._id
+        }
+
+        axiosSecure.patch(`/parcels/${selectedParcel._id}`, riderAssignInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    refetch();
+                    riderModalRef.current.close();
+
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Rider has been assigned",
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
     }
 
     return (
@@ -95,7 +121,11 @@ const AssignRiders = () => {
                                         <td>{rider.name}</td>
                                         <td>{rider.email}</td>
                                         <td>
-                                            <button className='btn btn-sm btn-primary text-black'>Assign</button>
+                                            <button
+                                                onClick={() => handleAssignRider(rider)}
+                                                className='btn btn-sm btn-primary text-black'
+                                            >Assign
+                                            </button>
                                         </td>
                                     </tr>)
                                 }
