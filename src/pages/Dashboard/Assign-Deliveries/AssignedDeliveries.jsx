@@ -9,9 +9,9 @@ const AssignedDeliveries = () => {
     const axiosSecure = useAxiosSecure();
 
     const { data: parcels = [] } = useQuery({
-        queryKey: ['parcels', user.email, 'deliver_assigned'],
+        queryKey: ['parcels', user.email, 'driver_assigned'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/parcels/rider?riderEmail=${user.email}&deliveryStatus=deliver_assigned`);
+            const res = await axiosSecure.get(`/parcels/rider?riderEmail=${user.email}&deliveryStatus=driver_assigned`);
             return res.data;
         }
     })
@@ -19,6 +19,7 @@ const AssignedDeliveries = () => {
     return (
         <div className='md:max-w-7xl md:mx-auto p-4'>
             <h1>Assign Deliveries Page</h1>
+            <p>Assigned Delivery for me({parcels.length})</p>
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
@@ -27,17 +28,20 @@ const AssignedDeliveries = () => {
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Sender District</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             parcels.map((parcel, index) => <tr key={parcel._id}>
                                 <th>{index + 1}</th>
-                                <td>C</td>
-                                <td>Quality</td>
-                                <td>Blue</td>
+                                <td>{parcel.parcelName}</td>
+                                <td>{parcel.senderDistrict}</td>
+                                <td>
+                                    <button className='btn btn-sm btn-primary text-black'>Accept</button>
+                                    <button className='btn btn-sm btn-warning text-black ml-3'>Cancel</button>
+                                </td>
                             </tr>)
                         }
                     </tbody>

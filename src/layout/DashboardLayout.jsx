@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
 import { FaHome, FaTasks, FaUsers } from 'react-icons/fa';
+import { IoIosSend } from "react-icons/io";
 import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
@@ -54,7 +55,7 @@ const DashboardLayout = () => {
 
                         {/* user only link */}
                         {
-                                role === 'user' && <>
+                            role === 'user' && <>
                                 <li><NavLink
                                     to='/dashboard/my-parcels'
                                     className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
