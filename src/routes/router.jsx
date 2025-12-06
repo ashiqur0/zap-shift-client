@@ -29,6 +29,7 @@ import AssignRiders from "../pages/Dashboard/Assign-Riders/AssignRiders";
 import AssignedDeliveries from "../pages/Dashboard/Assign-Deliveries/AssignedDeliveries";
 import RiderRoute from "./RiderRoute";
 import DashboardHome from "../pages/Dashboard/Dashboard-Home/DashboardHome";
+import UserRoute from "./UserRoute";
 
 const router = createBrowserRouter([
     {
@@ -111,30 +112,32 @@ const router = createBrowserRouter([
         </PrivateRoute>,
         children: [
 
-            // user only route
+            // common route
             {
                 path: 'dashboard-home',
                 Component: DashboardHome
             },
+
+            // user only route
             {
                 path: 'my-parcels',
-                Component: MyParcels
+                element: <UserRoute><MyParcels /></UserRoute>
             },
             {
                 path: 'payment/:parcelId',
-                Component: Payment
+                element: <UserRoute><Payment /></UserRoute>
             },
             {
                 path: 'payment-success',
-                Component: PaymentSuccess
+                element: <UserRoute><PaymentSuccess /></UserRoute>
             },
             {
                 path: 'payment-cancelled',
-                Component: PaymentCanceled
+                element: <UserRoute><PaymentCanceled /></UserRoute>
             },
             {
                 path: 'payment-history',
-                Component: PaymentHistory
+                element: <UserRoute><PaymentHistory /></UserRoute>
             },
 
             // admin only route
