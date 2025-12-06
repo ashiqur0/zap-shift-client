@@ -51,7 +51,8 @@ const ApproveRiders = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>District</th>
-                            <th>Status</th>
+                            <th>Application Status</th>
+                            <th>Work Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -63,6 +64,7 @@ const ApproveRiders = () => {
                                 <th>{rider.email}</th>
                                 <th>{rider.district}</th>
                                 <th className={`${(rider.status === 'approved' && 'text-green-500') || (rider.status === 'cancelled' && 'text-red-500') }`}>{rider.status}</th>
+                                <th>{rider.workStatus}</th>
                                 <th>
                                     <button
                                         className='btn btn-sm'
