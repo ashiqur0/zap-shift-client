@@ -5,7 +5,7 @@ import { IoHomeOutline, IoSettingsOutline } from 'react-icons/io5';
 import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
-import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
+import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments, MdOutlineTaskAlt } from "react-icons/md";
 import { FaHome, FaTasks, FaUsers } from 'react-icons/fa';
 import { IoIosSend } from "react-icons/io";
 import useRole from '../hooks/useRole';
@@ -80,6 +80,13 @@ const DashboardLayout = () => {
                                     className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
                                     data-tip="Assigned Deliveries"><FaTasks size={20} />
                                     <span className='is-drawer-close:hidden'>Assigned Deliveries</span>
+                                </NavLink></li>
+
+                                <li><NavLink
+                                    to='/dashboard/completed-deliveries'
+                                    className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
+                                    data-tip="Completed Deliveries"><MdOutlineTaskAlt size={20} />
+                                    <span className='is-drawer-close:hidden'>Completed Deliveries</span>
                                 </NavLink></li>
                             </>
                         }
