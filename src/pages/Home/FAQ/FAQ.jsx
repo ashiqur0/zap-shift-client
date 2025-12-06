@@ -31,7 +31,7 @@ const FAQ = () => {
 
             <div className='mt-5'>
                 {
-                    (seeMore ? faqs.slice(0, 5) : faqs).map(faq => (
+                    (!seeMore ? faqs.slice(0, 5) : faqs).map(faq => (
                         <div key={faq.id}
                             onClick={() => {
                                 !faq.open && handleFAQ(faq.id);
