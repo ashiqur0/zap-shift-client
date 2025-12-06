@@ -6,7 +6,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments } from "react-icons/md";
-import { FaTasks, FaUsers } from 'react-icons/fa';
+import { FaHome, FaTasks, FaUsers } from 'react-icons/fa';
 import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
@@ -40,15 +40,21 @@ const DashboardLayout = () => {
                 <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
                     {/* Sidebar content here */}
                     <ul className="menu w-full grow space-y-2">
-                        {/* List item */}
+
+                        {/* common links*/}
                         <li><Link to={'/'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                             <IoHomeOutline size={20} />
                             <span className="is-drawer-close:hidden">Homepage</span>
                         </Link></li>
 
-                        {/* normal user and admin can access */}
+                        <li><NavLink to={'/dashboard/dashboard-home'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard Home">
+                            <FaHome size={20} />
+                            <span className="is-drawer-close:hidden">Dashboard Home</span>
+                        </NavLink></li>
+
+                        {/* user only link */}
                         {
-                            (role === 'user' || role === 'admin') && <>
+                                role === 'user' && <>
                                 <li><NavLink
                                     to='/dashboard/my-parcels'
                                     className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
@@ -65,9 +71,9 @@ const DashboardLayout = () => {
                             </>
                         }
 
-                        {/* rider and admin can access */}
+                        {/* rider only links */}
                         {
-                            (role === 'rider' || role === 'admin') && <>
+                            role === 'rider' && <>
                                 <li><NavLink
                                     to='/dashboard/assigned-deliveries'
                                     className={`is-drawer-close:tooltip is-drawer-close:tooltip-right`}
@@ -103,10 +109,12 @@ const DashboardLayout = () => {
                             </>
                         }
 
+                        {/* common links */}
                         <li><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
                             <IoSettingsOutline size={20} />
                             <span className="is-drawer-close:hidden">Settings</span>
                         </button></li>
+
                     </ul>
                 </div>
             </div>

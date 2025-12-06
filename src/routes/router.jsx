@@ -28,6 +28,7 @@ import AdminRoute from "./AdminRoute";
 import AssignRiders from "../pages/Dashboard/Assign-Riders/AssignRiders";
 import AssignedDeliveries from "../pages/Dashboard/Assign-Deliveries/AssignedDeliveries";
 import RiderRoute from "./RiderRoute";
+import DashboardHome from "../pages/Dashboard/Dashboard-Home/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
         children: [
 
             // user only route
+            {
+                path: 'dashboard-home',
+                Component: DashboardHome
+            },
             {
                 path: 'my-parcels',
                 Component: MyParcels
