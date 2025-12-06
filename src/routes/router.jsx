@@ -27,6 +27,7 @@ import Forbidden from "../components/Forbidden/Forbidden";
 import AdminRoute from "./AdminRoute";
 import AssignRiders from "../pages/Dashboard/Assign-Riders/AssignRiders";
 import AssignedDeliveries from "../pages/Dashboard/Assign-Deliveries/AssignedDeliveries";
+import RiderRoute from "./RiderRoute";
 
 const router = createBrowserRouter([
     {
@@ -148,7 +149,7 @@ const router = createBrowserRouter([
             // rider only route
             {
                 path: 'assigned-deliveries',
-                element: <AssignedDeliveries />
+                element: <RiderRoute><AssignedDeliveries /></RiderRoute>
             }
         ]
     }
