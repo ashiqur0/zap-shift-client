@@ -17,8 +17,8 @@ const AssignedDeliveries = () => {
         }
     });
 
-    const handleAcceptDelivery = parcel => {
-        const statusInfo = { deliveryStatus: 'rider_arriving' };
+    const handleDeliveryStatusUpdate = (parcel, status) => {
+        const statusInfo = { deliveryStatus: status };
         axiosSecure.patch(`/parcels/${parcel._id}/status`, statusInfo)
             .then(res => {
                 if (res.data.modifiedCount) {
@@ -27,12 +27,19 @@ const AssignedDeliveries = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Thank you for accepting",
+                        title: `Delivery status updated with ${status.split('_').join(' ')}`,
                         showConfirmButton: false,
                         timer: 2500
                     });
                 }
             })
+
+        if (status === 'parcel_delivered') {
+            axiosSecure.patch(`/rider/${user._id}/status`)
+                .then(res => {
+                    console.log(res.data);
+                })
+        }
     }
 
     return (
@@ -58,15 +65,32 @@ const AssignedDeliveries = () => {
                                 <td>{parcel.parcelName}</td>
                                 <td>{parcel.senderDistrict}</td>
                                 <td>
+                                    {
+                                        parcel.deliveryStatus === 'driver_assigned' && <>
+                                            <button
+                                                onClick={() => handleDeliveryStatusUpdate(parcel, 'rider_arriving')}
+                                                className='btn btn-sm btn-primary text-black'
+                                            >Accept
+                                            </button>
+
+                                            <button
+                                                className='btn btn-sm btn-warning text-black ml-3'
+                                            >Cancel
+                                            </button>
+                                        </> || <span>Accepted</span>
+                                    }
+                                </td>
+                                <td>
                                     <button
-                                        onClick={() => handleAcceptDelivery(parcel)}
+                                        onClick={() => handleDeliveryStatusUpdate(parcel, 'parcel_picked_up')}
                                         className='btn btn-sm btn-primary text-black'
-                                    >Accept
+                                    >Mark As Pikup
                                     </button>
 
                                     <button
-                                        className='btn btn-sm btn-warning text-black ml-3'
-                                    >Cancel
+                                        onClick={() => handleDeliveryStatusUpdate(parcel, 'parcel_delivered')}
+                                        className='btn btn-sm btn-primary text-black ml-3'
+                                    >Mark As Delivered
                                     </button>
                                 </td>
                             </tr>)
