@@ -31,6 +31,7 @@ import RiderRoute from "./RiderRoute";
 import DashboardHome from "../pages/Dashboard/Dashboard-Home/DashboardHome";
 import UserRoute from "./UserRoute";
 import CompletedDeliveries from "../pages/Dashboard/Completed-Deliveries/CompletedDeliveries";
+import ParcelTrack from "../pages/Root/Parcel-Track/ParcelTrack";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 Component: Contact
+            },
+            {
+                path: '/parcel-track/:trackingId',
+                Component: ParcelTrack
             },
             {
                 path: '/rider',
