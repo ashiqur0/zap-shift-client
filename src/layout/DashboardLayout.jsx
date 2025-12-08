@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { GoSidebarCollapse } from "react-icons/go";
 import { MdAssignmentTurnedIn, MdDirectionsBike, MdOutlinePayments, MdOutlineTaskAlt } from "react-icons/md";
 import { FaHome, FaTasks, FaUsers } from 'react-icons/fa';
-import { IoIosSend } from "react-icons/io";
 import useRole from '../hooks/useRole';
+import logoImg from '../assets/logo.png'
 
 const DashboardLayout = () => {
 
@@ -44,9 +44,11 @@ const DashboardLayout = () => {
 
                         {/* common links*/}
                         <li><Link to={'/'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                            <IoHomeOutline size={20} />
-                            <span className="is-drawer-close:hidden">Homepage</span>
+                            <img src={logoImg} className='w-8 h-auto' alt="" />
+                            <span className="is-drawer-close:hidden text-xl font-bold">Zap Shift</span>
                         </Link></li>
+                        
+
 
                         <li><NavLink to={'/dashboard/dashboard-home'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard Home">
                             <FaHome size={20} />
