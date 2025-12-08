@@ -120,7 +120,7 @@ const router = createBrowserRouter([
 
             // common route
             {
-                path: 'dashboard-home',
+                index: true,
                 Component: DashboardHome
             },
 

@@ -50,7 +50,7 @@ const DashboardLayout = () => {
                         
 
 
-                        <li><NavLink to={'/dashboard/dashboard-home'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard Home">
+                        <li><NavLink to={'/dashboard'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard Home">
                             <FaHome size={20} />
                             <span className="is-drawer-close:hidden">Dashboard Home</span>
                         </NavLink></li>
