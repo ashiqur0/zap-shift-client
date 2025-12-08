@@ -64,6 +64,7 @@ const AdminDashboardHome = () => {
                         isAnimationActive={true}
                     />
                     <Legend></Legend>
+                    <Tooltip></Tooltip>
                 </PieChart>
             </div>
         </div>
