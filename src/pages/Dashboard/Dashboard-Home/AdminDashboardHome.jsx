@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Legend, Pie, PieChart, Tooltip } from 'recharts';
 
 const AdminDashboardHome = () => {
 
@@ -12,7 +13,13 @@ const AdminDashboardHome = () => {
             const res = await axiosSecure.get('/parcels/delivery-status/stats');
             return res.data;
         }
-    })
+    });
+
+    const getPieChartData = data => {
+        return data.map(item => {
+            return { name: item.status, value: item.count }
+        })
+    }
 
     return (
         <div className='md:max-w-7xl md:mx-auto p-4'>
@@ -20,7 +27,7 @@ const AdminDashboardHome = () => {
 
             <div className="stats shadow">
                 {
-                    deliveryStats.map(stat => <div className="stat mt-10" key={stat._id}>
+                    deliveryStats.map(stat => <div className="stat mt-10" key={stat.status}>
                         <div className="stat-figure text-secondary">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -36,10 +43,27 @@ const AdminDashboardHome = () => {
                                 ></path>
                             </svg>
                         </div>
-                        <div className="stat-title text-2xl">{stat._id}</div>
+                        <div className="stat-title text-2xl">{stat.status}</div>
                         <div className="stat-value">{stat.count}</div>
                     </div>)
                 }
+            </div>
+
+            <div className='w-full h-[400px]'>
+                <PieChart style={{ width: '100%', maxWidth: '500px', maxHeight: '80vh', aspectRatio: 2 }} responsive>
+                    <Pie
+                        dataKey="value"
+                        startAngle={180}
+                        endAngle={0}
+                        data={getPieChartData(deliveryStats)}
+                        cx="50%"
+                        cy="100%"
+                        outerRadius="120%"
+                        fill="#8884d8"
+                        label
+                        isAnimationActive={true}
+                    />
+                </PieChart>
             </div>
         </div>
     );
