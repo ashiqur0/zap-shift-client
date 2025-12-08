@@ -19,7 +19,7 @@ const Navbar = () => {
 
         {
             user && <>
-                <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/dashboard/dashboard-home'>Dashboard</NavLink></li>
+                <li><NavLink className={'px-2 py-1 rounded-2xl bg-white'} to='/dashboard'>Dashboard</NavLink></li>
             </>
         }
     </>
