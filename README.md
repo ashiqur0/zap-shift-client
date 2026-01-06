@@ -60,4 +60,41 @@ This repository contains the **frontend (client-side)** implementation built wit
 ---
 
 ## 📁 Project Structure
+src/
+├── components/
+├── pages/
+├── routes/
+├── hooks/
+├── services/
+├── layouts/
+├── assets/
+└── main.jsx
 
+---
+
+## ⚙️ Installation & Setup
+
+```bash
+git clone https://github.com/your-username/zap-shift-client.git
+cd zap-shift-client
+npm install
+npm run dev
+
+```
+
+## 🔑 Environment Variables
+Create a .env file and add:
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_STRIPE_PUBLISHABLE_KEY=your_key
+VITE_API_BASE_URL=your_server_url
+
+## 📌 Related Repository
+Server Side: https://github.com/ashiqur0/zap-shift-server
+
+## 👨‍💻 Author
+
+Ashiqur Rahman
+Full-Stack MERN Developer
+GitHub: https://github.com/ashiqur0
+Portfolio: https://ashiqur0.vercel.app/
