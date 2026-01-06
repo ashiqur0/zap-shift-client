@@ -1,16 +1,63 @@
-# React + Vite
+# ⚡ Zap Shift — Client Side
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zap Shift is a modern **parcel management web application** that allows users to create parcels, make secure payments, and track deliveries in real time.  
+This repository contains the **frontend (client-side)** implementation built with **React** and modern UI technologies.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
+🔗 **Demo URL:** https://zap-shift-by-ashiqur.web.app/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🖼️ Project Preview
 
-## Expanding the ESLint configuration
+![Zap Shift Client Demo](https://s5.ezgif.com/tmp/ezgif-5278c705b4eaf6b2.gif)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+- 📦 Create and manage parcels
+- 💳 Secure online payments using **Stripe**
+- 🔐 Firebase authentication
+- 👥 Role-based dashboards (User, Moderator, Rider)
+- 🚴 Rider delivery acceptance and status updates
+- 📊 Interactive charts using **Recharts**
+- 🎞️ Smooth animations with **Swiper.js**
+- 📱 Fully responsive design
+- 🎨 Clean and modern UI with **Tailwind CSS & DaisyUI**
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React
+- JavaScript (ES6+)
+- React Router
+- Tailwind CSS
+- DaisyUI
+- Swiper.js
+- Recharts
+
+### Authentication & Hosting
+- Firebase Authentication
+- Firebase Hosting
+
+### Payment
+- Stripe Payment Gateway
+
+---
+
+## 🔐 Authentication & Authorization
+
+- Firebase email/password authentication
+- Protected routes
+- Role-based UI rendering
+- Secure communication with backend APIs
+
+---
+
+## 📁 Project Structure
+
