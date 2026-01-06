@@ -59,16 +59,16 @@ This repository contains the **frontend (client-side)** implementation built wit
 
 ---
 
-## 📁 Project Structure
-src/
-├── components/
-├── pages/
-├── routes/
-├── hooks/
-├── services/
-├── layouts/
-├── assets/
-└── main.jsx
+## 📁 Project Structure </br>
+src/ </br>
+├── components/ </br>
+├── pages/ </br>
+├── routes/ </br>
+├── hooks/ </br>
+├── services/ </br>
+├── layouts/ </br>
+├── assets/ </br>
+└── main.jsx </br>
 
 ---
 
@@ -94,7 +94,7 @@ Server Side: https://github.com/ashiqur0/zap-shift-server
 
 ## 👨‍💻 Author
 
-Ashiqur Rahman
-Full-Stack MERN Developer
-GitHub: https://github.com/ashiqur0
-Portfolio: https://ashiqur0.vercel.app/
+Ashiqur Rahman </br>
+Full-Stack MERN Developer </br>
+GitHub: https://github.com/ashiqur0 </br>
+Portfolio: https://ashiqur0.vercel.app/ </br>
